@@ -46,15 +46,13 @@ function likeSomething(){
     const counterTimeHeart = counterThingy.innerText
     // likesForHeart.innerHTML += `<li> ${counterTimeHeart} has been liked <span>${likes}</span> time </li>`
     let newLike = document.createElement('li')
-    newLike.innerText = `${counter} has been liked ${likes} time`
+    newLike.innerText = `${counter} has been liked ${likes} times`
    //How do i combine them?????
     likesForHeart.append(newLike)     
     } else {
         likes+=1
-        likesForHeart.lastChild.innerText = `${counter} has been liked ${likes} time`
+        likesForHeart.lastChild.innerText = `${counter} has been liked ${likes} times`
     }
-
-
 }
 
 
@@ -64,10 +62,32 @@ pauseButtonThingy.addEventListener("click", function(e){
     if (e.target.innerText === "pause"){
         clearInterval(intervalTimer)
         e.target.innerText = "resume"
+        plusButtonThingy.disabled = true
+        minusButtonThingy.disabled = true
+        heartButtonThingy.disabled = true
     } else {
         setInterval(function(){
             counterThingy.innerText=++counter;
         },1000)
         e.target.innerText = "pause"
+        plusButtonThingy.disabled = false
+        minusButtonThingy.disabled = false
+        heartButtonThingy.disabled = false
     }
 })
+
+//8. Comment section 
+//a) grab each element 
+const commentContainer = document.querySelector("#comment-form")
+const commentBox = document.querySelector("#comment-input")
+const commentList = document.querySelector("#list")
+
+//b) adding event listeners
+commentContainer.addEventListener("submit", function(e){
+    e.preventDefault()
+    const eachComment = document.createElement('p')
+    eachComment.innerText = commentBox.value
+    commentList.appendChild(eachComment)
+    e.target.reset()
+})
+
