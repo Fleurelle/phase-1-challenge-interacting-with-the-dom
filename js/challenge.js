@@ -10,7 +10,7 @@ const likesForHeart = document.querySelector(".likes")
 let counter = 0
 
 //3. automatically update counter 
-setInterval(function(){
+const intervalTimer = setInterval(function(){
     // counter++;
     counterThingy.innerText=++counter;
 },1000)
@@ -39,21 +39,25 @@ heartButtonThingy.addEventListener("click", function(){
     let likes = 0
     likes++
     const counterTimeHeart = counterThingy.innerText
-    likesForHeart.innerHTML += `<li> ${counterTimeHeart} has been liked <span>${likes}</span> time </li>`
-    //How do i increment the values within the span tags?? 
-    likesForHeart.append(li)
-    
-    
+    // likesForHeart.innerHTML += `<li> ${counterTimeHeart} has been liked <span>${likes}</span> time </li>`
+    let newLike = document.createElement('li')
+    newLike.innerText = `${counterTimeHeart} has been liked ${likes} time`
+   //How do i combine them?????
+    likesForHeart.append(newLike) 
 })
 
 
-// . Pause button. How to stop execution?
-function pauseButton(){
-    pauseButtonThingy.pause();
-}
-
-//Adding event listeners to pause button
-pauseButtonThingy.addEventListener("click", function(){
-    pauseButtonThingy.pause();
+//7. Adding event listeners to pause button
+pauseButtonThingy.addEventListener("click", function(e){
     console.log(pauseButtonThingy);
+    if (e.target.innerText === "pause"){
+        clearInterval(intervalTimer)
+        e.target.innerText = "resume"
+    } else {
+        setInterval(function(){
+            // counter++;
+            counterThingy.innerText=++counter;
+        },1000)
+        e.target.innerText = "pause"
+    }
 })
