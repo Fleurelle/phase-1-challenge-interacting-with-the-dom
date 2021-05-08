@@ -7,12 +7,14 @@ const pauseButtonThingy = document.querySelector("#pause")
 const likesForHeart = document.querySelector(".likes")
 
 //2. declare counter
-let counter = 0
+let counter = parseInt(counterThingy.innerText)
+let likes = 0
 
 //3. automatically update counter 
 const intervalTimer = setInterval(function(){
-    // counter++;
-    counterThingy.innerText=++counter;
+    counter+=1;
+    counterThingy.innerText=counter,
+    likes=0
 },1000)
 
 //4. adding event listeners to minus button thingy
@@ -28,7 +30,9 @@ plusButtonThingy.addEventListener("click", function(){
 })
 
 //6. Heart button thingy 
-heartButtonThingy.addEventListener("click", function(){
+heartButtonThingy.addEventListener("click", likeSomething)
+
+function likeSomething(){
     //a) Need to click this button and see it on the DOM
     console.log(heartButtonThingy)
     //b) Need to create an itemized list with a message everytime this button is clicked. 
@@ -36,15 +40,22 @@ heartButtonThingy.addEventListener("click", function(){
     //inner text, let's just type it out using innerHTML. 
     //c. This itemized list needs to contain a counter so that it can tell
     //the button was clicked on the specific timestamp of the counter
-    let likes = 0
-    likes++
+    //let likes = 0
+    if (likes ==0) {
+    likes+=1
     const counterTimeHeart = counterThingy.innerText
     // likesForHeart.innerHTML += `<li> ${counterTimeHeart} has been liked <span>${likes}</span> time </li>`
     let newLike = document.createElement('li')
-    newLike.innerText = `${counterTimeHeart} has been liked ${likes} time`
+    newLike.innerText = `${counter} has been liked ${likes} time`
    //How do i combine them?????
-    likesForHeart.append(newLike) 
-})
+    likesForHeart.append(newLike)     
+    } else {
+        likes+=1
+        likesForHeart.lastChild.innerText = `${counter} has been liked ${likes} time`
+    }
+
+
+}
 
 
 //7. Adding event listeners to pause button
@@ -55,7 +66,6 @@ pauseButtonThingy.addEventListener("click", function(e){
         e.target.innerText = "resume"
     } else {
         setInterval(function(){
-            // counter++;
             counterThingy.innerText=++counter;
         },1000)
         e.target.innerText = "pause"

@@ -28,10 +28,10 @@ functionality working as you build.
 > Note: These deliverables are written in the form of _User Stories_. They
 > describe the features from the perspective of a user when they visit the page.
 
-* As a user, I should see the timer increment every second once the page has
-   loaded.
-* As a user, I can manually increment and decrement the counter using the plus
-   and minus buttons.
+<!-- * As a user, I should see the timer increment every second once the page has
+   loaded. -->
+<!-- * As a user, I can manually increment and decrement the counter using the plus
+   and minus buttons. -->
 * As a user, I can 'like' an individual number of the counter. I should see the
    count of the number of 'likes' associated with that number displayed.
 * As a user, I can pause the counter, which should:
